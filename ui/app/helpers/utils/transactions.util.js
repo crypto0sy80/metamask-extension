@@ -6,6 +6,12 @@ import {
   TRANSACTION_TYPE_CANCEL,
   TRANSACTION_STATUS_CONFIRMED,
 } from '../../../../app/scripts/controllers/transactions/enums'
+<<<<<<< Updated upstream
+=======
+import prefixForNetwork from '../../../lib/etherscan-prefix-for-network'
+import fetchWithCache from './fetch-with-cache'
+
+>>>>>>> Stashed changes
 
 import {
   TOKEN_METHOD_TRANSFER,
@@ -30,6 +36,24 @@ export function getTokenData (data = '') {
   return abiDecoder.decodeMethod(data)
 }
 
+<<<<<<< Updated upstream
+=======
+async function getMethodFrom4Byte (fourBytePrefix) {
+  const fourByteResponse = (await fetchWithCache(`https://www.4byte.directory/api/v1/signatures/?hex_signature=${fourBytePrefix}`, {
+    referrerPolicy: 'no-referrer-when-downgrade',
+    body: null,
+    method: 'GET',
+    mode: 'cors',
+  })).json()
+
+  if (fourByteResponse.count === 1) {
+    return fourByteResponse.results[0].text_signature
+  } else {
+    return null
+  }
+}
+
+>>>>>>> Stashed changes
 const registry = new MethodRegistry({ provider: global.ethereumProvider })
 
 /**
